@@ -1,10 +1,15 @@
 // Depedencies 
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
-var express = ('express');
+var express = require('express');
 var exphbs = require('express-handlebars');
 var db = mongoose.connection;
 var routes = require('./routes/routes.js');
+
+// require models
+var Comment = require('./models/Comment.js');
+var Article = require('./models/Article.js');
+
 
 // port setup
 var PORT = process.env.PORT || 8080;
@@ -12,7 +17,7 @@ var PORT = process.env.PORT || 8080;
 // initialize express app
 var app = express();
 var router = express.Router();
-require('./routes/routes')(router);
+require('./routes/routes.js')(router);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));

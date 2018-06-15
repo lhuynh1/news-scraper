@@ -1,0 +1,42 @@
+<nav>
+    <div class="nav-wrapper blue-grey darken-4">
+      <a href="#" class="brand-logo">TechCrunch Scraper</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+        <li><a href="/articles">Saved articles</a></li>
+        
+      </ul>
+    </div>
+  </nav>
+
+<div class="row">
+    <div class="col s12">
+      <div class="card card-panel hoverable">
+        <div class="card-image">
+          <img src="https://images.pexels.com/photos/50711/board-electronics-computer-data-processing-50711.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" id="motherboard">
+          <span class="card-title"><h1>Scraping the latest Tech news</h1></span>
+        </div>
+        
+        <div class="card-action">
+          <a href="/scrape" class="waves-effect waves-light btn blue-grey darken-4"><i class="material-icons right">forward</i>Scrape New Articles!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="articles">
+     {{#each article}}
+    <div class="row"> 
+        <div class="col s12">
+            <div class="card card-panel">
+                <div class="card-header">
+                    <h2 class="card-title">{{this.title}}</h2>
+                </div>
+            
+                <div class="card-body">
+                    <a href="{{this.link}}">{{this.link}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
