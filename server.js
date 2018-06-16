@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var exphbs = require('express-handlebars');
 var db = mongoose.connection;
-var routes = require('./routes/routes');
+// var routes = require('./routes/routes');
 
 // require models
 // var Comment = require('./models/Comment');
