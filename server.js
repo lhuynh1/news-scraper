@@ -17,12 +17,12 @@ var PORT = process.env.PORT || 8080;
 // initialize express app
 var app = express();
 var router = express.Router();
-require('./routes/routes.js')(router);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
 app.use(router);
+require('./routes/routes.js')(router);
 
 // handlebars setup
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
