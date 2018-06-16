@@ -13,30 +13,30 @@
     <div class="col s12">
       <div class="card card-panel hoverable">
         <div class="card-image">
-          <img src="https://images.pexels.com/photos/50711/board-electronics-computer-data-processing-50711.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" id="motherboard">
+          <img src="https://images.pexels.com/photos/50711/board-electronics-computer-data-processing-50711.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="s12" id="motherboard">
           <span class="card-title"><h1>Scraping the latest Tech news</h1></span>
         </div>
         
-        <div class="card-action">
-          <a href="/scrape" class="waves-effect waves-light btn blue-grey darken-4"><i class="material-icons right">forward</i>Scrape New Articles!</a>
+        <div class="card-action valign-wrapper">
+          <a href="/scrape" class="btn blue-grey darken-4 center-align"><i class="material-icons right">forward</i>Fetch New Articles!</a>
         </div>
       </div>
     </div>
   </div>
-<div class="articles">
-     {{#each article}}
-    <div class="row"> 
-        <div class="col s12">
-            <div class="card card-panel">
-                <div class="card-header">
-                    <h2 class="card-title">{{this.title}}</h2>
-                </div>
-            
-                <div class="card-body">
-                    <a href="{{this.link}}">{{this.link}}</a>
-                </div>
-            </div>
+
+<div class="articles-section">
+{{#each articles}}
+<div class="row">
+    <div class="col s12">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">{{this.title}}</span>
         </div>
+        <div class="card-action valign-wrapper">
+          <a href="{{this.link}}" class="btn blue-grey darken-4 center-align">Read the article!</a>
+        </div>
+      </div>
     </div>
-    {{/each}}
-</div>
+  </div>
+{{/each}}
+  </div>

@@ -2,8 +2,8 @@ var request = require('request');
 var cheerio = require('cheerio');
 
 // models
-var Article = require('../models/Article.js');
-var Comment = require('../models/Comment.js');
+var Article = require('../models/Article');
+var Comment = require('../models/Comment');
 
 module.exports = function(router) {
     // home page
@@ -12,36 +12,44 @@ module.exports = function(router) {
             if (err) {
                 res.send(err);
             } else {
-                res.render('index', {article: doc});
+                var hbsObj = {articles: doc}
+                console.log(hbsObj);
+                res.render('index', hbsObj);
             }
         });
     })
 
-    // rendering handlebar page
+    // rendering handlebar page for saved articles
     router.get('/articles', function(req,res) {
         Article.find({ saved: true }).populate('comments', 'body').exec(function(err, doc) {
             if (err) {
                 res.send(err)
             } else {
-                res.render('articles', {saved: doc});
+                var hbsObj = {articles: [doc]}
+                console.log(hbsObj);
+                res.render('index', hbsObj);
             }
         });
     });
 
     // scraping new articles
     router.get('/scrape', function(req, res) {
-        request('https://techcrunch.com/', function(err, res, html) {
+        request('https://techcrunch.com/', function(error, response, html) {
             var $ = cheerio.load(html);
+            var titleArray = [];
 
-            $('post-block__title').each(function(i, element) {
+            $('.post-block__title').each(function(i, element) {
                 var result = {};
-                console.log(result);
-
             // grabbing the links and texts of each article
-            result.title = $(this).children('a').text();
-            result.link = 'https://techcrunch.com/' + $(this).children('a').attr('href');
+            result.title = $(this).children().text();
+            result.link = $(this).children().attr('href');
+
+            // push article titles to array
+            titleArray.push(result);
+
 
             var entry = new Article(result);
+            console.log(result)
             entry.save(function(err, doc) {
                 if (err) {
                     console.log(err);
@@ -55,7 +63,7 @@ module.exports = function(router) {
   })
 
 // saving articles
-  router.post('/articles/comments/:id', function(req, res) {
+  router.post('/articles/:id', function(req, res) {
       Article.update({_id: req.params.id}, {$set: {saved: true}}, function(err, doc) {
           if (err) {
               res.send(err);

@@ -4,11 +4,11 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var exphbs = require('express-handlebars');
 var db = mongoose.connection;
-var routes = require('./routes/routes.js');
+var routes = require('./routes/routes');
 
 // require models
-var Comment = require('./models/Comment.js');
-var Article = require('./models/Article.js');
+var Comment = require('./models/Comment');
+var Article = require('./models/Article');
 
 
 // port setup
@@ -25,7 +25,7 @@ app.use(express.static('public'));
 app.use(router);
 
 // handlebars setup
-app.engine('handlebars', exphbs ({ defaultLayout: 'main' }));
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 // mongoose connection
