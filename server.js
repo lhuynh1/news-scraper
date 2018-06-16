@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
 app.use(router);
-require('./routes/routes.js')(router);
+require('./routes/routes')(router);
 
 // handlebars setup
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
