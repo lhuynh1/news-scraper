@@ -7,8 +7,8 @@ var db = mongoose.connection;
 var routes = require('./routes/routes');
 
 // require models
-var Comment = require('./models/Comment');
-var Article = require('./models/Article');
+// var Comment = require('./models/Comment');
+// var Article = require('./models/Article');
 
 
 // port setup
