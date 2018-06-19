@@ -36,7 +36,7 @@ app.set('view engine', 'handlebars');
 //     mongoose.connect('mongodb://localhost/news-scraper')
 // };
 
-if(process.env.NODE_ENV == 'production'){
+if(process.env.MONGODB_URI == 'production'){
     mongoose.connect('mongodb://heroku_5lvr0ftp:e0e2m50qkmoqkijn0fkbasbpp8@ds259620.mlab.com:59620/heroku_5lvr0ftp');
   }
   else{
