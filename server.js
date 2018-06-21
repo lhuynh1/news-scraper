@@ -21,13 +21,16 @@ var router = express.Router();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
-app.use(router);
+
 require('./routes/routes')(router);
+
+app.use(router);
 
 // handlebars setup
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
+mongoose.Promise = Promise;
 // mongoose connection
 // mongoose.connect('mongodb://heroku_5lvr0ftp:e0e2m50qkmoqkijn0fkbasbpp8@ds259620.mlab.com:59620/heroku_5lvr0ftp');
 if (process.env.MONGODB_URI){
